@@ -15,46 +15,25 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see http://www.gnu.org/licenses/.
 */
-import graphmaster.GraphView;
+package graphmaster;
 
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-public class GraphMasterMain {
+public class GraphView implements PaintListener {
 
-	private Display display;
-	private Shell shell;
-	private GraphView graphView;
-
-	public GraphMasterMain() {
-		display = new Display();
-		shell = new Shell(display);
-		graphView = new GraphView(shell);
-		initShell();
-	}
-
-	private void initShell() {
-		shell.addPaintListener(graphView);
-		Rectangle clientArea = shell.getClientArea();
-		shell.setBounds(clientArea.x + 10, clientArea.y + 10, 800, 600);
-	}
-
-	public void doMain() {		
-		shell.open();
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch())
-				display.sleep();
-		}
-		display.dispose();
-	}
+	Shell shell;
 	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		final GraphMasterMain gm = new GraphMasterMain();
-		gm.doMain();
+	public GraphView(Shell shell) {
+		this.shell = shell;
+	}
+
+	@Override
+	public void paintControl(PaintEvent e) {
+		Rectangle rect = shell.getClientArea();
+		e.gc.drawOval(0, 0, rect.width - 1, rect.height - 1);
 	}
 
 }
