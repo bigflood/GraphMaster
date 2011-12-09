@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see http://www.gnu.org/licenses/.
 */
+import graphmaster.GraphData;
 import graphmaster.GraphView;
 
 import org.eclipse.swt.graphics.Rectangle;
@@ -25,22 +26,24 @@ public class GraphMasterMain {
 
 	private Display display;
 	private Shell shell;
+	private GraphData graphData;
+	@SuppressWarnings("unused")
 	private GraphView graphView;
 
 	public GraphMasterMain() {
 		display = new Display();
 		shell = new Shell(display);
-		graphView = new GraphView(shell);
+		graphData = new GraphData();
+		graphView = new GraphView(graphData, shell);
 		initShell();
 	}
 
 	private void initShell() {
-		shell.addPaintListener(graphView);
 		Rectangle clientArea = shell.getClientArea();
 		shell.setBounds(clientArea.x + 10, clientArea.y + 10, 800, 600);
 	}
 
-	public void doMain() {		
+	public void doMain() {
 		shell.open();
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch())

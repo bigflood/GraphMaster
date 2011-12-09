@@ -17,23 +17,76 @@
 */
 package graphmaster;
 
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.MouseMoveListener;
+import org.eclipse.swt.events.MouseTrackListener;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Shell;
 
-public class GraphView implements PaintListener {
+public class GraphView implements PaintListener, MouseListener, MouseMoveListener, MouseTrackListener {
 
-	Shell shell;
+	@SuppressWarnings("unused")
+	private GraphData graphData;
+	private Shell shell;
 	
-	public GraphView(Shell shell) {
+	public GraphView(GraphData graphData, Shell shell) {
+		this.graphData = graphData;
 		this.shell = shell;
+		shell.addMouseListener(this);
+		shell.addMouseMoveListener(this);
+		shell.addMouseTrackListener(this);
+		shell.addPaintListener(this);
 	}
 
 	@Override
 	public void paintControl(PaintEvent e) {
 		Rectangle rect = shell.getClientArea();
 		e.gc.drawOval(0, 0, rect.width - 1, rect.height - 1);
+	}
+
+	@Override
+	public void mouseDoubleClick(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseDown(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseUp(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMove(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEnter(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExit(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseHover(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
