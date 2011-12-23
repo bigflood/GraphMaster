@@ -15,8 +15,8 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see http://www.gnu.org/licenses/.
 */
-import graphmaster.GraphData;
 import graphmaster.GraphView;
+import graphmaster.data.Graph;
 
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
@@ -26,15 +26,15 @@ public class GraphMasterMain {
 
 	private Display display;
 	private Shell shell;
-	private GraphData graphData;
+	private Graph graph;
 	@SuppressWarnings("unused")
 	private GraphView graphView;
 
 	public GraphMasterMain() {
 		display = new Display();
 		shell = new Shell(display);
-		graphData = new GraphData();
-		graphView = new GraphView(graphData, shell);
+		graph = new Graph();
+		graphView = new GraphView(graph, shell);
 		initShell();
 	}
 

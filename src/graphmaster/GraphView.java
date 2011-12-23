@@ -17,6 +17,8 @@
 */
 package graphmaster;
 
+import graphmaster.data.Graph;
+
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.MouseMoveListener;
@@ -29,10 +31,10 @@ import org.eclipse.swt.widgets.Shell;
 public class GraphView implements PaintListener, MouseListener, MouseMoveListener, MouseTrackListener {
 
 	@SuppressWarnings("unused")
-	private GraphData graphData;
+	private Graph graphData;
 	private Shell shell;
 	
-	public GraphView(GraphData graphData, Shell shell) {
+	public GraphView(Graph graphData, Shell shell) {
 		this.graphData = graphData;
 		this.shell = shell;
 		shell.addMouseListener(this);
