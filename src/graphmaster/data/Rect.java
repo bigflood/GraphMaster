@@ -17,7 +17,30 @@
 */
 package graphmaster.data;
 
-public class Node {
-	NodeTemplate nodeTemplate;
-	Rect bound = new Rect();
+public class Rect {
+	double x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+
+	public double left() {
+		return x1;
+	}
+	
+	public double top() {
+		return y1;
+	}
+	
+	public double right() {
+		return x2;
+	}
+	
+	public double bottom() {
+		return y2;
+	}
+	
+	public Vector2 leftTop() {
+		return new Vector2( x1, y1 );
+	}
+	
+	public Vector2 rightBottom() {
+		return new Vector2( x2, y2 );
+	}
 }
