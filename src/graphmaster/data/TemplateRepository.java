@@ -17,6 +17,23 @@
 */
 package graphmaster.data;
 
-public interface Element {
+import java.util.LinkedList;
 
+public class TemplateRepository {
+	LinkedList<NodeTemplate> nodeTemplates = new LinkedList<NodeTemplate>();
+	
+	public TemplateRepository() {
+		NodeTemplate templ = new NodeTemplate();
+		templ.name = "Node";
+		nodeTemplates.add(templ);
+	}
+	
+	public NodeTemplate getNodeTemplate( String name ) {
+		for( NodeTemplate templ : nodeTemplates ) {
+			if ( templ.name.equals(name) ) {
+				return templ;
+			}
+		}
+		return null;
+	}
 }

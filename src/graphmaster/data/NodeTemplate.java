@@ -17,7 +17,18 @@
 */
 package graphmaster.data;
 
-public class Node {
-	NodeTemplate nodeTemplate;
+import java.util.LinkedList;
+
+public class NodeTemplate {
+	String name = "";
 	
+	class NodePoint {
+		String name = "";
+		/**
+		 * true이면 Link가 1개로 제한된다.
+		 */
+		boolean singleLink = false;
+	}
+	
+	LinkedList<NodePoint> points = new LinkedList<NodePoint>();
 }

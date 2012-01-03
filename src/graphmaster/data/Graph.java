@@ -23,8 +23,8 @@ public class Graph {
 
 	public Graph() {
 		super();
-		elements = new LinkedList<Element>();
 	}
 
-	LinkedList<Element> elements;
+	LinkedList<Node> nodes = new LinkedList<Node>();
+	LinkedList<Link> links = new LinkedList<Link>();
 }

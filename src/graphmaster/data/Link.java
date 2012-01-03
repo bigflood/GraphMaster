@@ -17,6 +17,11 @@
 */
 package graphmaster.data;
 
-public class Link implements Element {
-
+public class Link {
+	class LinkPoint {
+		Node node = null;
+	}
+	
+	LinkPoint point1 = new LinkPoint();
+	LinkPoint point2 = new LinkPoint();
 }
