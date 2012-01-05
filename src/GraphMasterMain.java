@@ -16,6 +16,7 @@
     along with this program.  If not, see http://www.gnu.org/licenses/.
 */
 import graphmaster.GraphView;
+import graphmaster.GraphViewUI;
 import graphmaster.data.Graph;
 
 import org.eclipse.swt.graphics.Rectangle;
@@ -23,18 +24,21 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 public class GraphMasterMain {
+	private Graph graph;
+	private GraphView graphView;
 
 	private Display display;
 	private Shell shell;
-	private Graph graph;
 	@SuppressWarnings("unused")
-	private GraphView graphView;
+	private GraphViewUI graphViewUI;
 
 	public GraphMasterMain() {
+		graph = new Graph();
+		graphView = new GraphView(graph);
+
 		display = new Display();
 		shell = new Shell(display);
-		graph = new Graph();
-		graphView = new GraphView(graph, shell);
+		graphViewUI = new GraphViewUI(graphView, shell);
 		initShell();
 	}
 
