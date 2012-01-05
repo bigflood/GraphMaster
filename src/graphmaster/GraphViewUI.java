@@ -17,6 +17,9 @@
 */
 package graphmaster;
 
+import graphmaster.data.Vector2;
+import graphmaster.Graphics;
+
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.events.MouseEvent;
@@ -25,7 +28,6 @@ import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.events.MouseTrackListener;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Shell;
 
@@ -36,6 +38,8 @@ public class GraphViewUI implements PaintListener, MouseListener, MouseMoveListe
 	public GraphViewUI(GraphView graphView, Shell shell) {
 		this.graphView = graphView;
 		this.shell = shell;
+		
+		graphView.setViewOffset( new Vector2(-100, -100) );
 				
 		shell.addMouseListener(this);
 		shell.addMouseMoveListener(this);
@@ -47,13 +51,14 @@ public class GraphViewUI implements PaintListener, MouseListener, MouseMoveListe
 	}
 	
 	private void updateViewRect() {
-		graphView.setCanvasRect(shell.getClientArea());		
 	}
 	
 	@Override
 	public void paintControl(PaintEvent e) {
 		Rectangle paintArea = new Rectangle(e.x, e.y, e.width, e.height);
-		graphView.drawCanvas(e.gc, paintArea);
+		Graphics g = new Graphics(e.display, e.gc);
+		g.setPaintArea( paintArea );
+		graphView.drawCanvas(g, paintArea);
 	}
 
 	@Override
@@ -76,7 +81,7 @@ public class GraphViewUI implements PaintListener, MouseListener, MouseMoveListe
 
 	@Override
 	public void mouseMove(MouseEvent e) {
-		graphView.setMousePos(new Point(e.x, e.y));
+		// (new Point(e.x, e.y));
 		shell.redraw();
 	}
 

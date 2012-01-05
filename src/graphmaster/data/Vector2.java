@@ -60,4 +60,14 @@ public class Vector2 implements Cloneable {
 	public String toString() {
 		return String.format( "(%f,%f)", x, y );
 	}
+
+	public void add(Vector2 v) {
+		x += v.x;
+		y += v.y;
+	}
+
+	public void sub(Vector2 v) {
+		x -= v.x;
+		y -= v.y;
+	}
 }

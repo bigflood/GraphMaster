@@ -18,6 +18,7 @@
 import graphmaster.GraphView;
 import graphmaster.GraphViewUI;
 import graphmaster.data.Graph;
+import graphmaster.data.Node;
 
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
@@ -40,6 +41,8 @@ public class GraphMasterMain {
 		shell = new Shell(display);
 		graphViewUI = new GraphViewUI(graphView, shell);
 		initShell();
+		
+		graph.addNode( new Node() );
 	}
 
 	private void initShell() {

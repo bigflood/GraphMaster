@@ -20,11 +20,23 @@ package graphmaster.data;
 import java.util.LinkedList;
 
 public class Graph {
+	private LinkedList<Node> nodes = new LinkedList<Node>();
+	LinkedList<Link> links = new LinkedList<Link>();
 
 	public Graph() {
 		super();
 	}
 
-	LinkedList<Node> nodes = new LinkedList<Node>();
-	LinkedList<Link> links = new LinkedList<Link>();
+	public void addNode( Node node ) {
+		nodes.add( node );
+	}
+
+	public LinkedList<Node> getNodes() {
+		return nodes;
+	}
+	
+	public LinkedList<Link> getLinks() {
+		return links;
+	}
+
 }

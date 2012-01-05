@@ -18,33 +18,43 @@
 package graphmaster;
 
 import graphmaster.data.Graph;
+import graphmaster.data.Link;
+import graphmaster.data.Node;
+import graphmaster.data.Vector2;
 
-import org.eclipse.swt.graphics.GC;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 
 public class GraphView {
 
-	@SuppressWarnings("unused")
 	private Graph graphData;
-	private Rectangle canvasRect;
-	private Point mousePos = new Point(0,0);
+	private Vector2 viewOffset = new Vector2();
 	
 	public GraphView(Graph graphData) {
 		this.graphData = graphData;
 	}
 
-	public void drawCanvas(GC gc, Rectangle paintArea) {
-		gc.drawOval(0, 0, canvasRect.width - 1, canvasRect.height - 1);
-		gc.drawLine(0, mousePos.y, canvasRect.width-1, mousePos.y);
-		gc.drawLine(mousePos.x, 0, mousePos.x, canvasRect.height-1);
+	public void setViewOffset(Vector2 viewOffset) {
+		this.viewOffset = viewOffset;
 	}
 
-	public void setCanvasRect(Rectangle canvasRect) {
-		this.canvasRect = canvasRect;
+	public void drawCanvas(Graphics g, Rectangle paintArea) {
+		g.setOffset( viewOffset );
+		
+		for( Node node : graphData.getNodes() ) {
+			drawNode(g, node);
+		}
+		
+		for( Link link : graphData.getLinks() ) {
+			drawLink(g, link);
+		}
 	}
 
-	public void setMousePos(Point mousePos) {
-		this.mousePos = mousePos;
+	private void drawNode(Graphics g, Node node) {
+		g.fillRectangle( node.getBound() );
+		g.drawRectangle( node.getBound() );
+	}
+
+	private void drawLink(Graphics g, Link link) {
+		// TODO Auto-generated method stub
 	}
 }
