@@ -18,14 +18,20 @@
 package graphmaster.data;
 
 public class Node {
-	String name = "Noname";
-	NodeTemplate nodeTemplate;
+	private String name = "Noname";
+	@SuppressWarnings("unused")
+	private NodeTemplate nodeTemplate;
 	private Rect bound = new Rect(0, 0, 100, 50);
 	
 	public Rect getBound() {
 		return bound;
 	}
+	
 	public void setBound(Rect bound) {
 		this.bound = bound;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

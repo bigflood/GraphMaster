@@ -52,6 +52,7 @@ public class GraphView {
 	private void drawNode(Graphics g, Node node) {
 		g.fillRectangle( node.getBound() );
 		g.drawRectangle( node.getBound() );
+		g.drawText( node.getName(), node.getBound() );
 	}
 
 	private void drawLink(Graphics g, Link link) {
