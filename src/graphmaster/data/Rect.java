@@ -53,4 +53,9 @@ public class Rect {
 	public Vector2 rightBottom() {
 		return new Vector2( x2, y2 );
 	}
+	
+	@Override
+	public Rect clone() {
+		return new Rect(x1, y1, x2, y2);
+	}
 }

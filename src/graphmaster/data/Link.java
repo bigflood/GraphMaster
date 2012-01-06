@@ -24,4 +24,14 @@ public class Link {
 	
 	LinkPoint point1 = new LinkPoint();
 	LinkPoint point2 = new LinkPoint();
+	
+	@Override
+	public Link clone() {
+		Link l = new Link();
+		
+		l.point1.node = point1.node;
+		l.point2.node = point2.node;
+		
+		return l;
+	}
 }

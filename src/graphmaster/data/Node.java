@@ -19,7 +19,6 @@ package graphmaster.data;
 
 public class Node {
 	private String name = "Noname";
-	@SuppressWarnings("unused")
 	private NodeTemplate nodeTemplate;
 	private Rect bound = new Rect(0, 0, 100, 50);
 	
@@ -33,5 +32,16 @@ public class Node {
 	
 	public String getName() {
 		return name;
+	}
+	
+	@Override
+	public Node clone() {
+		Node n = new Node();
+
+		n.name = name;
+		n.nodeTemplate = nodeTemplate;
+		n.bound = bound.clone();
+
+		return n;
 	}
 }

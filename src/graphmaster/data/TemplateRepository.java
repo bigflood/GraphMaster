@@ -21,6 +21,7 @@ import java.util.LinkedList;
 
 public class TemplateRepository {
 	LinkedList<NodeTemplate> nodeTemplates = new LinkedList<NodeTemplate>();
+	LinkedList<Graph> graphTemplates = new LinkedList<Graph>();
 	
 	public TemplateRepository() {
 		NodeTemplate templ = new NodeTemplate();
@@ -32,6 +33,15 @@ public class TemplateRepository {
 		for( NodeTemplate templ : nodeTemplates ) {
 			if ( templ.name.equals(name) ) {
 				return templ;
+			}
+		}
+		return null;
+	}
+	
+	public Graph getGraphTemplate( String name ) {
+		for( Graph g : graphTemplates ) {
+			if ( g.name.equals(name) ) {
+				return g;
 			}
 		}
 		return null;

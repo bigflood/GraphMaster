@@ -20,6 +20,7 @@ package graphmaster.data;
 import java.util.LinkedList;
 
 public class Graph {
+	public String name = "";
 	private LinkedList<Node> nodes = new LinkedList<Node>();
 	LinkedList<Link> links = new LinkedList<Link>();
 
@@ -37,6 +38,21 @@ public class Graph {
 	
 	public LinkedList<Link> getLinks() {
 		return links;
+	}
+
+	@Override
+	public Object clone() {
+		Graph g = new Graph();
+	
+		for( Node node : nodes ) {
+			g.nodes.add( node.clone() );
+		}
+		
+		for( Link link : links ) {
+			g.links.add( link.clone() );
+		}
+		
+		return g;
 	}
 
 }
