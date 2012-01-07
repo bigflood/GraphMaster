@@ -32,7 +32,7 @@ public class Vector2 implements Cloneable {
 		this.x = x;
 		this.y = y;
 	}
-	
+
 	public double dot( Vector2 v ) {
 		return x * v.x + y * v.y;
 	}

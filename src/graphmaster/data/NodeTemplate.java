@@ -21,6 +21,7 @@ import java.util.LinkedList;
 
 public class NodeTemplate {
 	String name = "";
+	Vector2 size = new Vector2();
 	
 	class NodePoint {
 		String name = "";

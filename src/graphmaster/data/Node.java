@@ -33,7 +33,11 @@ public class Node {
 	public String getName() {
 		return name;
 	}
-	
+
+	public void setName(String v) {
+		name = v;
+	}
+
 	@Override
 	public Node clone() {
 		Node n = new Node();

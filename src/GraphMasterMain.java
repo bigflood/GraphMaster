@@ -19,12 +19,14 @@ import graphmaster.GraphView;
 import graphmaster.GraphViewUI;
 import graphmaster.data.Graph;
 import graphmaster.data.Node;
+import graphmaster.data.TemplateRepository;
 
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 public class GraphMasterMain {
+	private TemplateRepository repo = new TemplateRepository();
 	private Graph graph;
 	private GraphView graphView;
 
