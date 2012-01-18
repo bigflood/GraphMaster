@@ -1,8 +1,0 @@
-#
-# node template
-#
-
--
-  name: Node
-  size: [100, 50]
-
