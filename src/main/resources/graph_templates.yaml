@@ -1,4 +1,13 @@
 #
 # graph templates
+# YAML -> http://yaml.org/start.html
 #
+
+-
+  name: CreateNode
+  nodes:
+     - template: Node
+       name:
+       pos: [0, 0]
+
 
