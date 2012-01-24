@@ -1,0 +1,19 @@
+#
+# graph templates
+# YAML -> http://yaml.org/start.html
+#
+# ----------------------------------------
+nodeTemplates:
+  -
+    name: Node
+    size: [100, 50]
+
+# ----------------------------------------
+graphTemplates:
+  -
+    name: CreateNode
+    nodes:
+      - template: Node
+        name:
+        pos: [0, 0]
+

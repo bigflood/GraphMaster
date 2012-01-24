@@ -1,9 +1,0 @@
-#
-# node template
-# YAML -> http://yaml.org/start.html
-#
-
--
-  name: Node
-  size: [100, 50]
-

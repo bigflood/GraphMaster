@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.yaml.snakeyaml.Yaml;
 
@@ -19,8 +20,8 @@ public class YamlLoader {
 		reader.close();
 	}
 	
-	public Iterable<?> load() {
-		return (Iterable<?>)yaml.load(reader);
+	public Map<String,?> load() {
+		return (Map<String,?>)yaml.load(reader);
 	}
 
 	public static Vector2 toVector2( Object o ) {

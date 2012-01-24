@@ -32,8 +32,10 @@ public class TemplateRepository {
 	
 	private void load() {
 		try {
-			nodeTemplates = NodeTemplateLoader.load("node_templates.yaml");
-			graphTemplates = GraphTemplateLoader.load(this, "graph_templates.yaml");
+			GraphTemplateLoader loader = new GraphTemplateLoader();
+			loader.load("templates.yaml");
+			nodeTemplates = loader.getNodes();
+			graphTemplates = loader.getGraphs();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

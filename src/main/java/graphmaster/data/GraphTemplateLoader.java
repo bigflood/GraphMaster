@@ -17,35 +17,52 @@
 */
 package graphmaster.data;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Map;
 
-import org.yaml.snakeyaml.Yaml;
-
 public class GraphTemplateLoader {
-
-	TemplateRepository templateRepo;
-	LinkedList<Graph> graphTemplates = new LinkedList<Graph>();
+	YamlLoader yaml;
+	LinkedList<NodeTemplate> nodes = new LinkedList<NodeTemplate>();
+	LinkedList<Graph> graphs = new LinkedList<Graph>();
 	
-	public GraphTemplateLoader(TemplateRepository repo) {
-		templateRepo = repo;
+	public GraphTemplateLoader() {
 	}
-
-	static public LinkedList<Graph> load(TemplateRepository repo, String fileName) throws IOException {
-		GraphTemplateLoader loader = new GraphTemplateLoader(repo);
-		loader._load(fileName);
-		return null;
+	
+	public LinkedList<NodeTemplate> getNodes() {
+		return nodes;
 	}
-
-	private void _load(String fileName) throws IOException {
-		YamlLoader yaml = new YamlLoader( fileName );
-		Iterable<?> doc = (Iterable<?>)yaml.load();
-		for ( Object v : doc ) {
-			loadGraph(v);
-		}
+	
+	public LinkedList<Graph> getGraphs() {
+		return graphs;
+	}
+	
+	public void load(String fileName) throws IOException {
+		yaml = new YamlLoader(fileName);
+		Map<String,?> m = yaml.load();
+		loadNodes((Iterable<?>)m.get("nodeTemplates"));
+		loadGraphs((Iterable<?>)m.get("graphTemplates"));
 		yaml.close();
+	}
+		
+	private void loadNodes(Iterable<?> list) {
+		for ( Object v : list ) {
+			loadNode(v);
+		}
+	}
+	
+	private void loadNode( Object v ) {
+		NodeTemplate node = new NodeTemplate();
+		Map<String,?> m = (Map<String,?>)v;
+		node.name = (String)m.get("name");
+		node.size = YamlLoader.toVector2(m.get("size"));
+		nodes.add(node);
+	}
+
+	private void loadGraphs(Iterable<?> list) {
+		for ( Object v : list ) {
+			loadGraph(v);
+		}		
 	}
 
 	private void loadGraph(Object v) {
@@ -57,12 +74,12 @@ public class GraphTemplateLoader {
 			loadNode( graph, n );
 		}
 		
-		graphTemplates.add(graph);
+		graphs.add(graph);
 	}
 
 	private void loadNode(Graph graph, Object n) {
 		Map<String,?> m = (Map<String,?>)n;
-		NodeTemplate nodeTemplate = templateRepo.getNodeTemplate( (String)m.get("template") );
+		NodeTemplate nodeTemplate = getNodeTemplate( (String)m.get("template") );
 
 		Node node = nodeTemplate.newNode();
 		node.setName( (String)m.get("name") );
@@ -72,4 +89,12 @@ public class GraphTemplateLoader {
 		graph.addNode(node);
 	}
 
+	private NodeTemplate getNodeTemplate( String name ) {
+		for( NodeTemplate templ : nodes ) {
+			if ( templ.name.equals(name) ) {
+				return templ;
+			}
+		}
+		return null;
+	}
 }
