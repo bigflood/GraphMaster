@@ -39,7 +39,7 @@ public class GraphTemplateLoader {
 	
 	public void load(String fileName) throws IOException {
 		yaml = new YamlLoader(fileName);
-		Map<String,?> m = yaml.load();
+		Map<?,?> m = yaml.load();
 		loadNodes((Iterable<?>)m.get("nodeTemplates"));
 		loadGraphs((Iterable<?>)m.get("graphTemplates"));
 		yaml.close();
@@ -53,7 +53,7 @@ public class GraphTemplateLoader {
 	
 	private void loadNode( Object v ) {
 		NodeTemplate node = new NodeTemplate();
-		Map<String,?> m = (Map<String,?>)v;
+		Map<?,?> m = (Map<?,?>)v;
 		node.name = (String)m.get("name");
 		node.size = YamlLoader.toVector2(m.get("size"));
 		nodes.add(node);
@@ -67,7 +67,7 @@ public class GraphTemplateLoader {
 
 	private void loadGraph(Object v) {
 		Graph graph = new Graph();
-		Map<String,?> m = (Map<String,?>)v;
+		Map<?,?> m = (Map<?,?>)v;
 		graph.name = (String)m.get("name");
 		
 		for ( Object n : (Iterable<?>)m.get("nodes") ) {
@@ -78,7 +78,7 @@ public class GraphTemplateLoader {
 	}
 
 	private void loadNode(Graph graph, Object n) {
-		Map<String,?> m = (Map<String,?>)n;
+		Map<?,?> m = (Map<?,?>)n;
 		NodeTemplate nodeTemplate = getNodeTemplate( (String)m.get("template") );
 
 		Node node = nodeTemplate.newNode();

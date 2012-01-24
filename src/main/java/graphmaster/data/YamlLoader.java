@@ -20,8 +20,8 @@ public class YamlLoader {
 		reader.close();
 	}
 	
-	public Map<String,?> load() {
-		return (Map<String,?>)yaml.load(reader);
+	public Map<?,?> load() {
+		return (Map<?,?>)yaml.load(reader);
 	}
 
 	public static Vector2 toVector2( Object o ) {

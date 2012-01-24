@@ -18,7 +18,6 @@
 import graphmaster.GraphView;
 import graphmaster.GraphViewUI;
 import graphmaster.data.Graph;
-import graphmaster.data.Node;
 import graphmaster.data.TemplateRepository;
 
 import org.eclipse.swt.graphics.Rectangle;
