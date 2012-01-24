@@ -20,6 +20,7 @@ package graphmaster;
 import graphmaster.data.Graph;
 import graphmaster.data.Link;
 import graphmaster.data.Node;
+import graphmaster.data.Rect;
 import graphmaster.data.Vector2;
 
 import org.eclipse.swt.graphics.Rectangle;
@@ -50,9 +51,10 @@ public class GraphView {
 	}
 
 	private void drawNode(Graphics g, Node node) {
-		g.fillRectangle( node.getBound() );
-		g.drawRectangle( node.getBound() );
-		g.drawText( node.getName(), node.getBound() );
+		Rect bound = node.getBound();
+		g.fillRectangle( bound );
+		g.drawRectangle( bound );
+		g.drawText( node.getName(), bound );
 	}
 
 	private void drawLink(Graphics g, Link link) {

@@ -20,14 +20,11 @@ package graphmaster.data;
 public class Node {
 	private String name = "Noname";
 	private NodeTemplate nodeTemplate;
-	private Rect bound = new Rect(0, 0, 100, 50);
+	private Vector2 pos = new Vector2();
+	private Vector2 size = new Vector2();
 	
-	public Rect getBound() {
-		return bound;
-	}
-	
-	public void setBound(Rect bound) {
-		this.bound = bound;
+	public Node( NodeTemplate nodeTemplate ) {
+		this.nodeTemplate = nodeTemplate;
 	}
 	
 	public String getName() {
@@ -40,12 +37,24 @@ public class Node {
 
 	@Override
 	public Node clone() {
-		Node n = new Node();
+		Node n = new Node(nodeTemplate);
 
 		n.name = name;
-		n.nodeTemplate = nodeTemplate;
-		n.bound = bound.clone();
+		n.pos.assign(pos);
+		n.size.assign(size);
 
 		return n;
+	}
+
+	public void setSize(Vector2 v) {
+		size.assign(v);
+	}
+
+	public void setPos(Vector2 v) {
+		pos.assign(v);
+	}
+
+	public Rect getBound() {
+		return Rect.RectByPosSize(pos, size);
 	}
 }

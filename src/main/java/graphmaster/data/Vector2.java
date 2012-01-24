@@ -70,4 +70,9 @@ public class Vector2 implements Cloneable {
 		x -= v.x;
 		y -= v.y;
 	}
+
+	public void assign(Vector2 v) {
+		x = v.x;
+		y = v.y;
+	}
 }

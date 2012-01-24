@@ -6,8 +6,8 @@
 -
   name: CreateNode
   nodes:
-     - template: Node
-       name:
-       pos: [0, 0]
+    - template: Node
+      name:
+      pos: [0, 0]
 
 

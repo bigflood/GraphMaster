@@ -18,13 +18,9 @@
 package graphmaster.data;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Map;
 
-import org.yaml.snakeyaml.Yaml;
 
 public class TemplateRepository {
 	LinkedList<NodeTemplate> nodeTemplates = new LinkedList<NodeTemplate>();
@@ -34,59 +30,10 @@ public class TemplateRepository {
 		load();
 	}
 	
-	class NodeTemplateLoader {
-		LinkedList<NodeTemplate> nodeTemplates = new LinkedList<NodeTemplate>();
-
-		public LinkedList<NodeTemplate> load( String fileName ) throws IOException {
-			FileReader reader = new FileReader( "node_templates.yaml" );
-			Yaml yaml = new Yaml();
-			Iterable<?> doc = (Iterable<?>)yaml.load(reader);
-			for ( Object v : doc ) {
-				loadNode(v);
-			}
-			reader.close();
-			
-			return nodeTemplates;
-		}
-		
-		void loadNode( Object v ) {
-			NodeTemplate node = new NodeTemplate();
-			Map<String,?> m = (Map<String,?>)v;
-			node.name = (String)m.get("name");
-			node.size = toVector2(m.get("size"));
-			nodeTemplates.add(node);
-		}
-		
-		Vector2 toVector2( Object o ) {
-			Vector2 v = new Vector2();
-			double[] a = toDoubleArray(2, o);
-			v.x = a[0];
-			v.y = a[1];
-			return v;
-		}
-		
-		public double[] toDoubleArray( int n, Object obj ) {
-			double[] v = new double[n];
-			ArrayList<?> a = (ArrayList<?>)obj;
-			for( int i = 0 ; i < n ; ++i ) {
-				v[i] = toDouble( a.size() > 0 ? a.get(i) : 0.0 );
-			}
-			return v;
-		}
-
-		private double toDouble(Object obj) {
-			if ( obj instanceof Double ) {
-				return (Double)obj;
-			} else if ( obj instanceof Integer ) {
-				return (Integer)obj;
-			}
-			return 0;
-		}
-	}
-	
 	private void load() {
 		try {
-			nodeTemplates = new NodeTemplateLoader().load("node_templates.yaml");
+			nodeTemplates = NodeTemplateLoader.load("node_templates.yaml");
+			graphTemplates = GraphTemplateLoader.load(this, "graph_templates.yaml");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -32,4 +32,10 @@ public class NodeTemplate {
 	}
 	
 	LinkedList<NodePoint> points = new LinkedList<NodePoint>();
+
+	public Node newNode() {
+		Node node = new Node(this);
+		node.setSize( size );
+		return node;
+	}
 }

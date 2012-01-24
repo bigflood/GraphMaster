@@ -44,7 +44,7 @@ public class GraphMasterMain {
 		graphViewUI = new GraphViewUI(graphView, shell);
 		initShell();
 		
-		graph.addNode( new Node() );
+		graph.addNode( repo.getNodeTemplate("Node").newNode() );
 	}
 
 	private void initShell() {

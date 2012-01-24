@@ -29,6 +29,10 @@ public class Rect {
 		this.x2 = x2;
 		this.y2 = y2;
 	}
+	
+	public static Rect RectByPosSize( Vector2 pos, Vector2 size ) {
+		return new Rect( pos.x, pos.y, pos.x + size.x, pos.y + size.y );
+	}
 
 	public double left() {
 		return x1;
